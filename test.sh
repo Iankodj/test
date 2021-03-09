@@ -1,1 +1,1 @@
-echo "initial test"
+echo "SHOULD NOT PRINT"
