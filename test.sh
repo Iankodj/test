@@ -1,1 +1,1 @@
-echo "SUCCESS"
+echo "SHOULD NOT ECHO"
