@@ -1,1 +1,1 @@
-echo "SHOULD NOT PRINT"
+echo "SUCCESS"
