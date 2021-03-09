@@ -1,1 +1,2 @@
-echo "SHOULD NOT ECHO"
+echo "FAIL"
+exit 1
