@@ -26,16 +26,17 @@ jobs:
       - name: Echo the branch name
         run: echo "Branch name ${GIT_BRANCH_NAME}"
 
-      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
-        with:
-          token: '${{ secrets.GITHUB_TOKEN }}'
-
       - name: checkout
         uses: actions/checkout@v2
         with:
           ref: production
           clean: true
           fetch-depth: 0
+          
+      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+
         
       - name: Merge develop to master
         run: |
