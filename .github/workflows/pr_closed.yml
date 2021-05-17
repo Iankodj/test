@@ -40,6 +40,8 @@ jobs:
         with:
           pr_branch: 'production'
         env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITBOT_EMAIL: iankodj@gmail.com
           DRY_RUN: false
         
         
