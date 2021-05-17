@@ -19,13 +19,6 @@ jobs:
         with:
           issue-number: ${{github.event.number}}
           body-includes: cherry-pick me
-          
-      - name: Comment
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{github.event.number}}
-          body: ${{steps.fc.outputs.comment-id}}
-          reactions: eyes
 
 
       - name: Cherry-pick
