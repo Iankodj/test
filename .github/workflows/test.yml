@@ -1,0 +1,46 @@
+name: Cherry-pick
+
+on:
+  pull_request:
+    branches: [ master ]
+    types: [closed]
+
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch'
+        required: true
+
+jobs:
+  # This workflow contains a single job called "build"
+  cherry-pick:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Extract branch name
+        id: git-branch-name
+        uses: EthanSK/git-branch-name-action@v1
+
+      - name: Echo the branch name
+        run: echo "Branch name ${GIT_BRANCH_NAME}"
+
+      - uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          ref: production
+          clean: true
+          fetch-depth: 0
+        
+      - name: Merge develop to master
+        run: |
+          git checkout -b CP-${{github.event.number}}
+          git merge --ff-only ${GIT_BRANCH_NAME}
+          git push -u origin CP-${{github.event.number}}
+        
+        
