@@ -20,7 +20,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Find Comment
+      - name: Should Cherry-pick this?
         uses: peter-evans/find-comment@v1
         id: fc
         with:
@@ -28,7 +28,7 @@ jobs:
           body-includes: cherry-pick
 
 
-      - name: Create new comment
+      - name: Cherry-pick
         if: steps.fc.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v1
         with:
