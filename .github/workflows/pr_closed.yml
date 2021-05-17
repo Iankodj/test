@@ -22,11 +22,22 @@ jobs:
           body-includes: cherry-pick me
 
 
-      - name: Cherry-pick
+      - name: Comment Cherry-picked
         if: steps.fc.outputs.comment-id != ''
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{github.event.number}}
           body: Cherry-picked
           reactions: eyes
+      
+      - name: checkout
+        uses: actions/checkout@v1
+        
+      - name: Cherry-pick real
+        uses: gorillio/github-action-cherry-pick@master
+        with:
+          pr_branch: 'production'
+        env: 
+          DRY_RUN: false
+        
         
