@@ -7,6 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   pull_request:
     branches: [ master ]
+    types: [opened]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,5 +26,4 @@ jobs:
         with:
           issue-number: ${{github.event.number}}
           body: If you want this PR to be cherry-picked to production add comment that contains 'cherry-pick' inside.
-          reactions: '+1'
       
