@@ -24,6 +24,6 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{github.event.number}}
-          body: Hello ${{github.event.number}}
+          body: If you want this PR to be cherry-picked to production add comment that contains 'cherry-pick' inside.
           reactions: '+1'
       
