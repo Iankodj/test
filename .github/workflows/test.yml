@@ -41,7 +41,7 @@ jobs:
       - name: Merge develop to master
         run: |
           git checkout -b CP-${{github.event.number}}
-          git merge --ff-only ${GIT_BRANCH_NAME}
-          git push -u origin/CP-${{github.event.number}}
+          commits=$(git log origin/master..origin/${GIT_BRANCH_NAME} --pretty=format:"%h")
+          echo ${commits}
         
         
