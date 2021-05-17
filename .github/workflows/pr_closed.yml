@@ -31,9 +31,11 @@ jobs:
           reactions: eyes
       
       - name: checkout
+        if: steps.fc.outputs.comment-id != ''
         uses: actions/checkout@v1
         
       - name: Cherry-pick real
+        if: steps.fc.outputs.comment-id != ''
         uses: gorillio/github-action-cherry-pick@master
         with:
           pr_branch: 'production'
