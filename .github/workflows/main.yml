@@ -27,7 +27,7 @@ jobs:
         with:
           issue-number: ${{github.event.number}}
           body: | 
-            Hello, ${{github.event.pull_request.user.name}}, 
+            Hello @${{github.event.pull_request.user.login}}, 
             
             To cherry-pick this PR just add a comment with `cherry-pick me` before it is merged.
             
