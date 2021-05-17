@@ -42,7 +42,7 @@ jobs:
         run: |
           git checkout -b CP-${{github.event.number}}
           commits=$(git log origin/master..origin/${GIT_BRANCH_NAME} --pretty=format:"%h")
-          for sha in $commits; do git cherry-pick $sha; done
+          git cherry-pick $commits
           git push -u origin CP-${{github.event.number}}
         
         
