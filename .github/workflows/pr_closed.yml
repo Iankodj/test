@@ -1,20 +1,13 @@
-# This is a basic workflow to help you get started with Actions
+name: Cherry-pick
 
-name: CI
-
-# Controls when the action will run. 
 on:
   pull_request:
     branches: [ master ]
     types: [closed]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  cherry-pick:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -26,6 +19,13 @@ jobs:
         with:
           issue-number: ${{github.event.number}}
           body-includes: cherry-pick
+          
+      - name: Comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{github.event.number}}
+          body: ${{steps.fc.outputs.comment-id}}
+          reactions: eyes
 
 
       - name: Cherry-pick
@@ -33,7 +33,6 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{github.event.number}}
-          body: |
-            Cherry-picked
+          body: Cherry-picked
           reactions: eyes
         
