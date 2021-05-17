@@ -21,9 +21,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Script
+        uses: actions/github-script@v2
+        with: 
+          script: console.log(${{github.event}})
+        
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{github.event.number}}
-          body: Hellop, ${{github.event.issue.user.login}}, ff you want this PR to be cherry-picked to production add comment that contains 'cherry-pick' inside.
+          body: Hellop, ${{github.event.pull_request.user.login}}, ff you want this PR to be cherry-picked to production add comment that contains 'cherry-pick' inside.
       
