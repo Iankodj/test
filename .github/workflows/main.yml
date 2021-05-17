@@ -29,7 +29,7 @@ jobs:
           body: | 
             Hello @${{github.event.pull_request.user.login}}, 
             
-            To cherry-pick this PR just add a comment with `cherry-pick me` before it is merged.
+            To cherry-pick this PR just add a comment with text `cherry-pick` inside before it is merged.
             
             Cheers
        
